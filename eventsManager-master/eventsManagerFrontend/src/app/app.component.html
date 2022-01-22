@@ -1,0 +1,381 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Gestão de Eventos Académicos</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!-- <link rel="stylesheet" href="../assets/css/main.css" /> -->
+		<link rel="stylesheet" href="../assets/css/font-awesome.min.css" />
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a (click)="changePage('initial')" style="cursor: pointer" class="logo"><img border="0" src="../assets/images/logo-white.png" width="215" height="100"></a>
+					<nav id="nav">
+						<a (click)="changePage('initial')" style="cursor: pointer">Página Inicial</a>
+						<a (click)="changePage('create')" style="cursor: pointer">Criar Evento</a>
+						<a (click)="changePage('about')" style="cursor: pointer">Sobre</a>
+						<a (click)="changePage('events')" style="cursor: pointer">Eventos</a>
+					</nav>
+					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+				</div>
+			</header>
+
+
+    <ng-container *ngIf="page === 'initial'">
+<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<header>
+						<h1>Gestão de Eventos Académicos</h1>
+					</header>
+
+					<div class="flex ">
+
+						<div>
+							<span class="icon fa-plus-circle"></span>
+							<h3>Criar</h3>
+							<p>Crie o seu próprio evento</p>
+						</div>
+
+						<div>
+							<span class="icon fa-search"></span>
+							<h3>Explorar</h3>
+							<p>Explore os vários eventos que temos para si</p>
+						</div>
+
+						<div>
+							<span class="icon fa-folder-open"></span>
+							<h3>Categorias</h3>
+							<p>As mais diversas categorias</p>
+						</div>
+
+					</div>
+
+					<footer>
+						<a (click)="changePage('create')" style="cursor: pointer" class="button">Criar Evento</a>
+					</footer>
+				</div>
+			</section>
+
+
+		<!-- Three -->
+			<section id="three" class="wrapper align-center">
+				<div class="inner">
+					<div class="flex flex-2">
+						<article>
+							<div class="image round">
+								<img src="../assets/images/pic01.jpg" alt="Pic 01" />
+							</div>
+							<header>
+								<h3>Eventos</h3>
+							</header>
+							<p>Visualiza a lista de todos os eventos disponíveis. <br>Filtra a tua pesquisa por categorias.</p>
+							<footer>
+								<a (click)="changePage('events')" style="cursor: pointer" class="button">Ver Eventos</a>
+							</footer>
+						</article>
+						<article>
+							<div class="image round">
+								<img src="../assets/images/pic02.jpg" alt="Pic 02" />
+							</div>
+							<header>
+								<h3>Sobre</h3>
+							</header>
+							<p>Saiba um pouco mais sobre nós.</p>
+							<footer>
+								<a (click)="changePage('about')" style="cursor: pointer" class="button">Saber Mais</a>
+							</footer>
+						</article>
+					</div>
+				</div>
+			</section>
+    </ng-container>
+
+    <ng-container *ngIf="page === 'create'">
+      <section id="banner" class="wrapper">
+        <div class="inner">
+            <header class="align-center">
+                <h2>Criar Evento</h2>
+            </header>
+
+            <!-- Elements -->
+            <div class="row 200%">
+
+                <div class="12u$ 12u$(medium)">
+
+                    <!-- Form -->
+                    <form>
+                        <div class="row uniform">
+                            <p>Nome: </p>
+                            <div class="10u$ 12u$(xsmall)">
+                                <input type="text" name="nome" id="nome" value="" placeholder="Name" />
+                            </div>
+                            <p>Email: </p>
+                            <div class="10u$ 12u$(xsmall)">
+                                <input type="email" name="email" id="email" value="" placeholder="Email" />
+                            </div>
+                            <p>Local: </p>
+                            <div class="10u$ 12u$(xsmall)">
+                                <input type="text" name="local" id="local" value="" placeholder="Local" />
+                            </div>
+                            <p>Imagem: </p>
+                            <div class="10u$ 12u$(xsmall)">
+                                <input type="text" name="image" id="imagem" value="" placeholder="Imagem"/>
+                            </div>
+                            <p>Data: </p>
+                            <div class="6u$ 12u$(xsmall)">
+                                <input type="date" name="data" id="data" />
+                            </div>
+                            <!-- Break -->
+                            <div class="12u$">
+                                <div class="select-wrapper">
+                                    <select name="categoria" id="categoria">
+                                        <option value="conferencias">Conferências</option>
+                                        <option value="seminarios">Seminários</option>
+                                        <option value="desportivos">Desportivos</option>
+                                        <option value="culturais">Culturais</option>
+                                        <option value="workshops">Workshops</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Break -->
+                            <div class="12u$">
+                                <textarea name="descricao" id="descricao" placeholder="Escreva uma descrição do evento" rows="6"></textarea>
+                            </div>
+                            <!-- Break -->
+                            <div class="12u$">
+                                <ul class="actions">
+                                    <li>
+                                        <input type="button" id="criarEvento" value="Criar Evento" (click)="submitEvent()"/>
+                                    </li>
+                                    <li>
+                                        <input type="reset" value="Cancelar" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    </ng-container>
+
+    <ng-container *ngIf="page === 'edit'">
+        <section id="banner" class="wrapper">
+          <div class="inner">
+              <header class="align-center">
+                  <h2>Criar Evento</h2>
+              </header>
+  
+              <!-- Elements -->
+              <div class="row 200%">
+  
+                  <div class="12u$ 12u$(medium)">
+  
+                      <!-- Form -->
+                      <form>
+                          <div class="row uniform">
+                              <p>Nome: </p>
+                              <div class="10u$ 12u$(xsmall)">
+                                  <input type="text" name="nome" id="editNome" [value]="eventToBeEdited.name" placeholder="Name" />
+                              </div>
+                              <p>Email: </p>
+                              <div class="10u$ 12u$(xsmall)">
+                                  <input type="email" name="email" id="editEmail" [value]="eventToBeEdited.email" placeholder="Email" />
+                              </div>
+                              <p>Local: </p>
+                              <div class="10u$ 12u$(xsmall)">
+                                  <input type="text" name="local" id="editLocal" [value]="eventToBeEdited.local" placeholder="Local" />
+                              </div>
+                              <p>Imagem: </p>
+                              <div class="10u$ 12u$(xsmall)">
+                                  <input type="text" name="image" id="editImagem" [value]="eventToBeEdited.image" placeholder="Imagem"/>
+                              </div>
+                              <p>Data: </p>
+                              <div class="6u$ 12u$(xsmall)">
+                                  <input type="date" name="data" id="editData" [value]="eventToBeEdited.date" />
+                              </div>
+                              <!-- Break -->
+                              <div class="12u$">
+                                  <div class="select-wrapper">
+                                      <select name="categoria" id="editCategoria" [value]="eventToBeEdited.category">
+                                          <option value="conferencias">Conferências</option>
+                                          <option value="seminarios">Seminários</option>
+                                          <option value="desportivos">Desportivos</option>
+                                          <option value="culturais">Culturais</option>
+                                          <option value="workshops">Workshops</option>
+                                      </select>
+                                  </div>
+                              </div>
+  
+                              <!-- Break -->
+                              <div class="12u$">
+                                  <textarea name="descricao" id="editDescricao" placeholder="Escreva uma descrição do evento" rows="6" [value]="eventToBeEdited.description"></textarea>
+                              </div>
+                              <!-- Break -->
+                              <div class="12u$">
+                                  <ul class="actions">
+                                      <li>
+                                          <input type="button" id="criarEvento" value="Editar Evento" (click)="sumbitEdit(eventToBeEdited._id)"/>
+                                      </li>
+                                      <li>
+                                          <input type="reset" value="Cancelar" />
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+  
+          </div>
+  
+      </section>
+      </ng-container>
+    
+    <ng-container *ngIf="page === 'about'">
+      <section id="banner" class="wrapper">
+        <div class="inner">
+          <header class="align-center">
+            <h2>Sobre</h2>
+          </header>
+          <div class="image round left">
+            <img src="../images/pic01.jpg" alt="Pic 01" />
+          </div>
+          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque
+            ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem
+            quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi
+            nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non
+            numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis
+            nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel
+            eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat
+            quo voluptas nulla pariatur?</p>
+    
+          <div class="image round right">
+            <img src="../images/pic02.jpg" alt="Pic 02" />
+          </div>
+          <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti
+            quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia
+            deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam
+            libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus,
+            omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus
+            saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente
+            delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+    
+          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque
+            ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem
+            quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi
+            nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non
+            numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis
+            nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel
+            eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat
+            quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
+            deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt
+            in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita
+            distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat
+            facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis
+            aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum
+            hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores
+            repellat.
+          </p>
+    
+        </div>
+      </section>
+    </ng-container>
+
+    <ng-container *ngIf="page === 'events'">
+      <section id="banner" class="wrapper">
+        <div class="inner">
+          <header class="align-center">
+            <h2>Eventos</h2>
+            <select name="category" id="category" (change)="applyFilter($event.target.value)">Categorias de Evento
+              <option value="all">Todos</option>
+              <option value="workshops">Workshops</option>
+              <option value="seminarios">Seminários</option>
+              <option value="culturais">Culturais</option>
+              <option value="desportivos">Desportivos</option>
+              <option value="conferencias">Conferências</option>
+            </select>
+          </header>
+
+          <ng-container *ngIf="filter === 'all'; else filtered">
+              <ng-container *ngFor="let event of events">
+                  <div style="border: solid 1px black; word-break: break-all">
+                      <div class="image round left"><img src="{{event.image}}" alt=""></div>
+                      <p>{{event.name}}</p>
+                      <p>{{event.description}}</p>
+                      <button (click)="deleteEvent(event.id)">DELETE></button>
+                      <button (click)="editEvent(event.id)">EDIT></button>
+                    </div>
+                    <br>
+            </ng-container>
+          </ng-container>
+          
+          <ng-template #filtered>
+              <ng-container *ngFor="let event of events">
+                  <ng-container *ngIf="event.category === filter">
+                      <div style="border: solid 1px black; word-break: break-all">
+                          <div class="image round left"><img src="{{event.image}}" alt=""></div>
+                          <p>{{event.name}}</p>
+                          <p>{{event.description}}</p>
+                          <button (click)="deleteEvent(event.id)">DELETE></button>
+                          <button (click)="editEvent(event.id)">EDIT></button>
+                        </div>
+                        <br>
+                  </ng-container>
+            </ng-container>
+          </ng-template>
+          
+        </div>
+      </section>
+    </ng-container>
+		
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+
+					<h3>Contacta-nos</h3>
+
+					<form action="https://formspree.io/bgn101995@gmail.com" method="POST" action="#" method="post">
+
+						<div class="field half first">
+							<label for="nome">Nome</label>
+							<input name="nome" id="nome" type="text" placeholder="Nome">
+						</div>
+						<div class="field half">
+							<label for="email">Email</label>
+							<input name="email" id="email" type="email" placeholder="Email">
+						</div>
+						<div class="field">
+							<label for="mensagem">Mensagem</label>
+							<textarea name="mensagem" id="mensagem" rows="6" placeholder="Mensagem"></textarea>
+						</div>
+						<ul class="actions">
+							<li><input value="Enviar mensagem" class="button alt" type="submit"></li>
+						</ul>
+					</form>
+
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<!-- <script src="assets/js/jquery.min.js"></script> -->
+			<!-- <script src="assets/js/skel.min.js"></script> -->
+			<!-- <script src="assets/js/util.js"></script> -->
+			<!-- <script src="assets/js/main.js"></script> -->
+			<!-- <script src="assets/js/contacto.js"></script> -->
+			<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+	</body>
+</html>
+
+<router-outlet></router-outlet>
