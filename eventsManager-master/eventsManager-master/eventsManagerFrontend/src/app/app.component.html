@@ -1,0 +1,381 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Academic Event Management</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!-- <link rel="stylesheet" href="../assets/css/main.css" /> -->
+		<link rel="stylesheet" href="../assets/css/font-awesome.min.css" />
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a (click)="changePage('initial')" style="cursor: pointer" class="logo"><img border="0" src="../assets/images/logo-white.png" width="215" height="100"></a>
+					<nav id="nav">
+						<a (click)="changePage('initial')" style="cursor: pointer">Home Page</a>
+						<a (click)="changePage('create')" style="cursor: pointer">Create Event</a>
+						<a (click)="changePage('about')" style="cursor: pointer">About</a>
+						<a (click)="changePage('events')" style="cursor: pointer">Events</a>
+					</nav>
+					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+				</div>
+			</header>
+
+
+    <ng-container *ngIf="page === 'initial'">
+<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<header>
+						<h1>Academic Event Management</h1>
+					</header>
+
+					<div class="flex ">
+
+						<div>
+							<span class="icon fa-plus-circle"></span>
+							<h3>Create</h3>
+							<p>Create your own event</p>
+						</div>
+
+						<div>
+							<span class="icon fa-search"></span>
+							<h3>Explore</h3>
+							<p>Explore the various events we have for you</p>
+						</div>
+
+						<div>
+							<span class="icon fa-folder-open"></span>
+							<h3>Categories</h3>
+							<p>The most diverse categories</p>
+						</div>
+
+					</div>
+
+					<footer>
+						<a (click)="changePage('create')" style="cursor: pointer" class="button">Create Event</a>
+					</footer>
+				</div>
+			</section>
+
+
+		<!-- Three -->
+			<section id="three" class="wrapper align-center">
+				<div class="inner">
+					<div class="flex flex-2">
+						<article>
+							<div class="image round">
+								<img src="../assets/images/pic01.jpg" alt="Pic 01" />
+							</div>
+							<header>
+								<h3>Events</h3>
+							</header>
+							<p>View the list of all available events. <br>Filter your search by categories.</p>
+							<footer>
+								<a (click)="changePage('events')" style="cursor: pointer" class="button">Ver Events</a>
+							</footer>
+						</article>
+						<article>
+							<div class="image round">
+								<img src="../assets/images/pic02.jpg" alt="Pic 02" />
+							</div>
+							<header>
+								<h3>About</h3>
+							</header>
+							<p>Find out a little more about us.</p>
+							<footer>
+								<a (click)="changePage('about')" style="cursor: pointer" class="button">Know more</a>
+							</footer>
+						</article>
+					</div>
+				</div>
+			</section>
+    </ng-container>
+
+    <ng-container *ngIf="page === 'create'">
+      <section id="banner" class="wrapper">
+        <div class="inner">
+            <header class="align-center">
+                <h2>Create Event</h2>
+            </header>
+
+            <!-- Elements -->
+            <div class="row 200%">
+
+                <div class="12u$ 12u$(medium)">
+
+                    <!-- Form -->
+                    <form>
+                        <div class="row uniform">
+                            <p>Name: </p>
+                            <div class="10u$ 12u$(xsmall)">
+                                <input type="text" name="name" id="name" value="" placeholder="Name" />
+                            </div>
+                            <p>Email: </p>
+                            <div class="10u$ 12u$(xsmall)">
+                                <input type="email" name="email" id="email" value="" placeholder="Email" />
+                            </div>
+                            <p>Local: </p>
+                            <div class="10u$ 12u$(xsmall)">
+                                <input type="text" name="local" id="local" value="" placeholder="Local" />
+                            </div>
+                            <p>Image: </p>
+                            <div class="10u$ 12u$(xsmall)">
+                                <input type="text" name="image" id="image" value="" placeholder="Image"/>
+                            </div>
+                            <p>Data: </p>
+                            <div class="6u$ 12u$(xsmall)">
+                                <input type="date" name="data" id="data" />
+                            </div>
+                            <!-- Break -->
+                            <div class="12u$">
+                                <div class="select-wrapper">
+                                    <select name="categoria" id="categoria">
+                                        <option value="conferences">Conferences</option>
+                                        <option value="seminars">Seminars</option>
+                                        <option value="sports">Sports</option>
+                                        <option value="cultural">Cultural</option>
+                                        <option value="workshops">Workshops</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Break -->
+                            <div class="12u$">
+                                <textarea name="description" id="description" placeholder="Write a description of the event" rows="6"></textarea>
+                            </div>
+                            <!-- Break -->
+                            <div class="12u$">
+                                <ul class="actions">
+                                    <li>
+                                        <input type="button" id="createEvent" value="Create Event" (click)="submitEvent()"/>
+                                    </li>
+                                    <li>
+                                        <input type="reset" value="Cancel" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    </ng-container>
+
+    <ng-container *ngIf="page === 'edit'">
+        <section id="banner" class="wrapper">
+          <div class="inner">
+              <header class="align-center">
+                  <h2>Create Event</h2>
+              </header>
+  
+              <!-- Elements -->
+              <div class="row 200%">
+  
+                  <div class="12u$ 12u$(medium)">
+  
+                      <!-- Form -->
+                      <form>
+                          <div class="row uniform">
+                              <p>Name: </p>
+                              <div class="10u$ 12u$(xsmall)">
+                                  <input type="text" name="name" id="editName" [value]="eventToBeEdited.name" placeholder="Name" />
+                              </div>
+                              <p>Email: </p>
+                              <div class="10u$ 12u$(xsmall)">
+                                  <input type="email" name="email" id="editEmail" [value]="eventToBeEdited.email" placeholder="Email" />
+                              </div>
+                              <p>Local: </p>
+                              <div class="10u$ 12u$(xsmall)">
+                                  <input type="text" name="local" id="editLocal" [value]="eventToBeEdited.local" placeholder="Local" />
+                              </div>
+                              <p>Image: </p>
+                              <div class="10u$ 12u$(xsmall)">
+                                  <input type="text" name="image" id="editImage" [value]="eventToBeEdited.image" placeholder="Image"/>
+                              </div>
+                              <p>Data: </p>
+                              <div class="6u$ 12u$(xsmall)">
+                                  <input type="date" name="data" id="editData" [value]="eventToBeEdited.date" />
+                              </div>
+                              <!-- Break -->
+                              <div class="12u$">
+                                  <div class="select-wrapper">
+                                      <select name="categoria" id="editCategoria" [value]="eventToBeEdited.category">
+                                        <option value="conferences">Conferences</option>
+                                        <option value="seminars">Seminars</option>
+                                        <option value="sports">Sports</option>
+                                        <option value="cultural">Cultural</option>
+                                        <option value="workshops">Workshops</option>
+                                      </select>
+                                  </div>
+                              </div>
+  
+                              <!-- Break -->
+                              <div class="12u$">
+                                  <textarea name="description" id="editDescription" placeholder="Write a description of the event" rows="6" [value]="eventToBeEdited.description"></textarea>
+                              </div>
+                              <!-- Break -->
+                              <div class="12u$">
+                                  <ul class="actions">
+                                      <li>
+                                          <input type="button" id="createEvento" value="Edit Event" (click)="sumbitEdit(eventToBeEdited._id)"/>
+                                      </li>
+                                      <li>
+                                          <input type="reset" value="Cancel" />
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+  
+          </div>
+  
+      </section>
+      </ng-container>
+    
+    <ng-container *ngIf="page === 'about'">
+      <section id="banner" class="wrapper">
+        <div class="inner">
+          <header class="align-center">
+            <h2>About</h2>
+          </header>
+          <div class="image round left">
+            <img src="../images/pic01.jpg" alt="Pic 01" />
+          </div>
+          <p>But in order that you may understand whence every born error is the pleasure of accusing and praising the pain, 
+            I will open the whole matter, and will explain the very things which were said by that inventor of the truth and 
+            as it were the architect of the blessed life. For no one rejects, or hates, or shuns pleasure, because it is 
+            pleasure itself, but because great pains result from those who do not know how to follow pleasure by reason. 
+            Moreover, there is no one who desires to obtain pain, because pain itself is love, enhanced, and desires to 
+            acquire it, but because times of such a nature do not occur, so that by toil and pain he may seek some great 
+            pleasure. For, to the slightest degree, which of us undertakes any laborious physical exercise, except to obtain 
+            some advantage from it? But who even rightfully condemns him who desires to be in that pleasure which is the result 
+            of no annoyance,or him who shuns that pain whither no pleasure can be obtained?</p>
+    
+          <div class="image round right">
+            <img src="../images/pic02.jpg" alt="Pic 02" />
+          </div>
+          <p>No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know 
+            how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone 
+            who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances 
+            occur in which toil and pain can procure him some great pleasure. But we both accuse and deem them most worthy of 
+            just hatred, who, blinded by desire to soothe and corrupted by the flattery of the present pleasures, do not foresee 
+            what pains and annoyances they will receive;</p>
+    
+          <p>But in order that you may understand whence every born error is the pleasure of accusing and praising the pain, 
+            I will open the whole matter, and will explain the very things which were said by that inventor of the truth and 
+            as it were the architect of the blessed life. For no one rejects, or hates, or shuns pleasure, because it is 
+            pleasure itself, but because great pains result from those who do not know how to follow pleasure by reason. 
+            Moreover, there is no one who desires to obtain pain, because pain itself is love, enhanced, and desires to 
+            acquire it, but because times of such a nature do not occur, so that by toil and pain he may seek some great 
+            pleasure. For, to the slightest degree, which of us undertakes any laborious physical exercise, except to obtain 
+            some advantage from it? But who even rightfully condemns him who desires to be in that pleasure which is the result 
+            of no annoyance,or him who shuns that pain whither no pleasure can be obtained? But, indeed, we both accuse and deem 
+            them most worthy of just hatred, who are soothed by the flattery of the present pleasures"being corrupted, 
+            they do not foresee what pains and what troubles they will receive, being blinded by desire, they are in a similar fault 
+            those who forsake their duties with tenderness of mind, that is, the avoidance of toils and sorrows. And of these things 
+            it is easy and easydistinction. For free time, when we have to choose between our choiceswe can do the best we can, 
+            every pleasure must be taken up, every pain is avoided. Nowadaysto some, or due to obligations or necessities of affairs, 
+            it will often happen that both pleasures must be repudiated and annoyances are not accepted. Therefore he is bound by the 
+            choices of the wise man of those things, such as either rejecting his pleasuresother major consequences or enduring painful pain</p>
+    
+        </div>
+      </section>
+    </ng-container>
+
+    <ng-container *ngIf="page === 'events'">
+      <section id="banner" class="wrapper">
+        <div class="inner">
+          <header class="align-center">
+            <h2>Events</h2>
+            <select name="category" id="category" (change)="applyFilter($event.target.value)">Categorias de Evento
+              <option value="all">Todos</option>
+              <option value="workshops">Workshops</option>
+              <option value="seminars">Seminars</option>
+              <option value="cultural">Cultural</option>
+              <option value="Sports">Sports</option>
+              <option value="conferences">Conferences</option>
+            </select>
+          </header>
+
+          <ng-container *ngIf="filter === 'all'; else filtered">
+              <ng-container *ngFor="let event of events">
+                  <div style="border: solid 1px black; word-break: break-all">
+                      <div class="image round left"><img src="{{event.image}}" alt=""></div>
+                      <p>{{event.name}}</p>
+                      <p>{{event.description}}</p>
+                      <button (click)="deleteEvent(event.id)">DELETE></button>
+                      <button (click)="editEvent(event.id)">EDIT></button>
+                    </div>
+                    <br>
+            </ng-container>
+          </ng-container>
+          
+          <ng-template #filtered>
+              <ng-container *ngFor="let event of events">
+                  <ng-container *ngIf="event.category === filter">
+                      <div style="border: solid 1px black; word-break: break-all">
+                          <div class="image round left"><img src="{{event.image}}" alt=""></div>
+                          <p>{{event.name}}</p>
+                          <p>{{event.description}}</p>
+                          <button (click)="deleteEvent(event.id)">DELETE></button>
+                          <button (click)="editEvent(event.id)">EDIT></button>
+                        </div>
+                        <br>
+                  </ng-container>
+            </ng-container>
+          </ng-template>
+          
+        </div>
+      </section>
+    </ng-container>
+		
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+
+					<h3>Contacta-nos</h3>
+
+					<form action="https://formspree.io/bgn101995@gmail.com" method="POST" action="#" method="post">
+
+						<div class="field half first">
+							<label for="name">Name</label>
+							<input name="name" id="name" type="text" placeholder="Name">
+						</div>
+						<div class="field half">
+							<label for="email">Email</label>
+							<input name="email" id="email" type="email" placeholder="Email">
+						</div>
+						<div class="field">
+							<label for="message">Message</label>
+							<textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
+						</div>
+						<ul class="actions">
+							<li><input value="Send message" class="button alt" type="submit"></li>
+						</ul>
+					</form>
+
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<!-- <script src="assets/js/jquery.min.js"></script> -->
+			<!-- <script src="assets/js/skel.min.js"></script> -->
+			<!-- <script src="assets/js/util.js"></script> -->
+			<!-- <script src="assets/js/main.js"></script> -->
+			<!-- <script src="assets/js/contacto.js"></script> -->
+			<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+	</body>
+</html>
+
+<router-outlet></router-outlet>
